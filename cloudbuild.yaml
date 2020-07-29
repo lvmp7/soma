@@ -1,12 +1,8 @@
 steps:
 
-- id: 'go_linter'
-  name: "golangci/golangci-lint"
-  args: ["golangci-lint","run"]
-
-- id: 'Teste soma'
+- id: 'Testes'
   name: "gcr.io/cloud-builders/go"
-  args: ["test","soma"]
+  args: ["test"]
   env: ["GOPATH=."]
 
 - id: 'Build images'
