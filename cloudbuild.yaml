@@ -1,13 +1,18 @@
 steps:
 
-- id: 'Teste soma'
-  name: "gcr.io/cloud-builders/go"
-  args: ["test","soma"]
+- id: 'version'
+  name: 'gcr.io/$PROJECT_ID/soma'
+  args: ['version']
   env: ["GOPATH=."]
 
 - id: 'go_linter'
   name: "golangci/golangci-lint"
   args: ["golangci-lint","run"]
+
+- id: 'Teste soma'
+  name: "gcr.io/cloud-builders/go"
+  args: ["test","soma"]
+  env: ["GOPATH=."]
 
 - id: 'Build images'
   name: 'gcr.io/cloud-builders/docker'
@@ -20,10 +25,6 @@ steps:
   - '-t'
   - 'gcr.io/$PROJECT_ID/soma:0.0.1'
   - '.'
-
-- id: 'Tag'
-  name: 'gcr.io/$PROJECT_ID/soma'
-  args: ['version']
 
 images:
 - 'gcr.io/$PROJECT_ID/soma:latest'
