@@ -1,10 +1,5 @@
 steps:
 
-- id: 'version'
-  name: 'gcr.io/$PROJECT_ID/soma'
-  args: ['version']
-  env: ["GOPATH=."]
-
 - id: 'go_linter'
   name: "golangci/golangci-lint"
   args: ["golangci-lint","run"]
@@ -25,6 +20,11 @@ steps:
   - '-t'
   - 'gcr.io/$PROJECT_ID/soma:0.0.1'
   - '.'
+
+- id: 'version'
+  name: 'gcr.io/$PROJECT_ID/soma'
+  args: ['version']
+  env: ["GOPATH=."]
 
 images:
 - 'gcr.io/$PROJECT_ID/soma:latest'
