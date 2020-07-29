@@ -16,7 +16,8 @@ steps:
   - '-t'
   - 'gcr.io/$PROJECT_ID/soma:0.0.1'
   - '.'
-  - name: 'gcr.io/$PROJECT_ID/soma'
+
+- name: 'gcr.io/$PROJECT_ID/soma'
   args: ['version']
 
 images:
