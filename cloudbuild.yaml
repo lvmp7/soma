@@ -1,25 +1,14 @@
 steps:
 
-- id: 'Teste soma'
-- name: "gcr.io/cloud-builders/go"
-  args: ["test","soma"]
+- id: 'Testes'
+  name: "gcr.io/cloud-builders/go"
+  args: ["test"]
   env: ["GOPATH=."]
 
 - id: 'Build images'
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-  - 'build'
-  - '--build-arg'
-  - 'VERSION=0.0.1'
-  - '-t'
-  - 'gcr.io/$PROJECT_ID/soma:latest'
-  - '-t'
-  - 'gcr.io/$PROJECT_ID/soma:0.0.1'
-  - '.'
-  - name: 'gcr.io/$PROJECT_ID/soma'
-  args: ['version']
-
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/soma:0.0.1', '-t', 'gcr.io/$PROJECT_ID/soma:latest', '.']
+  
 images:
 - 'gcr.io/$PROJECT_ID/soma:latest'
 - 'gcr.io/$PROJECT_ID/soma:0.0.1'
-tags: ['0.0.1']
